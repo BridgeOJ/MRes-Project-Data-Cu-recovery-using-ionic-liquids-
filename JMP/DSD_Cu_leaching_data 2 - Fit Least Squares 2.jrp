@@ -1,0 +1,424 @@
+﻿Local Here(
+	(table1 = New Table( "DSD_Cu_leaching_data 2",
+		Add Rows( 12 ),
+		New Script(
+			"Source",
+			Open(
+				"/C:/Users/0liv3/OneDrive - Imperial College London/21 - Research Master's Project/Data/DSD_Cu_leaching_data.csv",
+				columns(
+					New Column( "Run", Character, "Nominal" ),
+					New Column( "Temp",
+						Numeric,
+						"Continuous",
+						Format( "Best", 12 )
+					),
+					New Column( "H2O2_pct",
+						Numeric,
+						"Continuous",
+						Format( "Best", 12 )
+					),
+					New Column( "LS_ratio",
+						Numeric,
+						"Continuous",
+						Format( "Best", 12 )
+					),
+					New Column( "Time_hr",
+						Numeric,
+						"Continuous",
+						Format( "Best", 12 )
+					),
+					New Column( "Total_Vol_mL",
+						Numeric,
+						"Continuous",
+						Format( "Best", 12 )
+					),
+					New Column( "Cu_conc_ugL",
+						Numeric,
+						"Continuous",
+						Format( "Best", 12 )
+					),
+					New Column( "Cu_mass_ug",
+						Numeric,
+						"Continuous",
+						Format( "Best", 12 )
+					),
+					New Column( "Cu_yield_pct",
+						Numeric,
+						"Continuous",
+						Format( "Best", 12 )
+					)
+				),
+				Import Settings(
+					End Of Line( CRLF, CR, LF ),
+					End Of Field( Comma, CSV( 1 ) ),
+					Treat Leading Zeros as Character( 1 ),
+					Strip Quotes( 0 ),
+					Use Apostrophe as Quotation Mark( 0 ),
+					Use Regional Settings( 0 ),
+					Scan Whole File( 1 ),
+					Treat empty columns as numeric( 0 ),
+					CompressNumericColumns( 0 ),
+					CompressCharacterColumns( 0 ),
+					CompressAllowListCheck( 0 ),
+					Labels( 1 ),
+					Column Names Start( 1 ),
+					First Named Column( 1 ),
+					Data Starts( 2 ),
+					Lines To Read( "All" ),
+					Year Rule( "20xx" )
+				)
+			)
+		),
+		New Script(
+			"Cu Yield Fit Model",
+			Fit Model(
+				Y( :Cu_yield_pct ),
+				Effects( :LS_ratio, :Time_hr, :Temp, :H2O2_pct, :Temp * :Temp ),
+				Personality( "Standard Least Squares" ),
+				Emphasis( "Effect Screening" ),
+				Run(
+					:Cu_yield_pct << {Summary of Fit( 0 ), Analysis of Variance( 0 ),
+					Parameter Estimates( 1 ), Effect Details( 0 ),
+					Sorted Estimates( 0 ), Plot Actual by Predicted( 1 ),
+					Plot Regression( 0 ), Plot Residual by Predicted( 1 ),
+					Plot Studentized Residuals( 1 ), Plot Effect Leverage( 0 ),
+					Plot Residual by Normal Quantiles( 0 ),
+					Box Cox Y Transformation( 0 ),
+					Profiler(
+						1,
+						Confidence Intervals( 1 ),
+						Term Value(
+							:LS_ratio( 20, Lock( 0 ), Show( 1 ) ),
+							:Time_hr( 7, Lock( 0 ), Show( 1 ) ),
+							:Temp( 60, Lock( 0 ), Show( 1 ) ),
+							:H2O2_pct( 17.5, Lock( 0 ), Show( 1 ) )
+						)
+					), Contour Profiler(
+						1,
+						Term Value(
+							:LS_ratio( 19.85, Lock( 0 ), Show( 1 ) ),
+							:Time_hr( 7, Lock( 0 ), Show( 1 ) ),
+							:Temp( 59.9375, Lock( 0 ), Show( 1 ) ),
+							:H2O2_pct( 17.5, Lock( 0 ), Show( 1 ) )
+						),
+						Contour Value(
+							:Cu_yield_pct(
+								77.825403705,
+								Min( 64.4213050428 ),
+								Max( 91.2295023672 )
+							)
+						),
+						Grid Density( "40 x 40" ),
+						Horizontal Factor( :LS_ratio ),
+						Vertical Factor( :Temp )
+					)}
+				)
+			)
+		),
+		New Column( "Run",
+			Character,
+			"Nominal",
+			Set Values(
+				{"R1", "R2", "R3", "R4", "R5", "R6", "R7", "R8", "R9", "CP1", "CP2",
+				"CP3"}
+			)
+		),
+		New Column( "Temp",
+			Numeric,
+			"Continuous",
+			Format( "Best", 12 ),
+			Set Values(
+				[25, 90, 25, 90, 57.5, 57.5, 25, 90, 57.5, 57.5, 57.5, 57.5]
+			)
+		),
+		New Column( "H2O2_pct",
+			Numeric,
+			"Continuous",
+			Format( "Best", 12 ),
+			Set Values( [30, 5, 5, 30, 30, 5, 17.5, 17.5, 17.5, 17.5, 17.5, 17.5] )
+		),
+		New Column( "LS_ratio",
+			Numeric,
+			"Continuous",
+			Format( "Best", 12 ),
+			Set Values( [30, 10, 20, 20, 10, 30, 10, 30, 20, 20, 20, 20] )
+		),
+		New Column( "Time_hr",
+			Numeric,
+			"Continuous",
+			Format( "Best", 12 ),
+			Set Values( [7, 7, 12, 2, 2, 12, 12, 2, 7, 7, 7, 7] )
+		),
+		New Column( "Total_Vol_mL",
+			Numeric,
+			"Continuous",
+			Format( "Best", 12 ),
+			Set Values( [30, 10, 20, 20, 10, 30, 10, 30, 20, 20, 20, 20] )
+		),
+		New Column( "Cu_conc_ugL",
+			Numeric,
+			"Continuous",
+			Format( "Best", 12 ),
+			Set Values(
+				[128814.3997, 345939.5835, 184518.2897, 190016.4477, 317884.5423,
+				117824.0732, 310569.4481, 142806.5692, 164217.5611, 179181.5009,
+				171376.0005, 168485.3563]
+			)
+		),
+		New Column( "Cu_mass_ug",
+			Numeric,
+			"Continuous",
+			Format( "Best", 12 ),
+			Set Values(
+				[3864.43199, 3459.395835, 3690.365795, 3800.328955, 3178.845423,
+				3534.722195, 3105.694481, 4284.197077, 3284.351223, 3583.630018,
+				3427.52001, 3369.707127]
+			)
+		),
+		New Column( "Cu_yield_pct",
+			Numeric,
+			"Continuous",
+			Format( "Best", 12 ),
+			Set Values(
+				[81.39523493, 72.86409423, 77.72893703, 80.04505419, 66.954955,
+				74.4506681, 65.41420124, 90.23660617, 69.17718828, 75.48079717,
+				72.19270442, 70.97501106]
+			)
+		),
+		New Column( "Fe_yield_pct",
+			Numeric,
+			"Continuous",
+			Format( "Best", 12 ),
+			Set Values(
+				[68.0046914, 76.862749, 69.66228472, 79.97926033, 61.20139247,
+				74.65410531, 61.76239548, 77.72964864, 68.88750702, 81.06860175,
+				68.74497227, 73.30248868]
+			)
+		),
+		New Column( "Pred Formula Cu_yield_pct",
+			Numeric,
+			"Continuous",
+			Format( "Best", 12 ),
+			Set Property( "Notes", "Prediction Formula" ),
+			Formula(
+				78.0180426743334 + 0.680820978833334 * :LS_ratio + -1.501057467 *
+				:Time_hr + -0.0585321433333335 * :Temp + -0.355594727733334 *
+				:H2O2_pct + 0.00606750355187377 * (:Temp - 57.5) * (:Temp - 57.5)
+			),
+			Set Property(
+				"Predicting",
+				{:Cu_yield_pct, Creator( "Fit Least Squares" ), ID( 289022650 ),
+				Std Dev( 2.09732297672621 )}
+			)
+		),
+		New Column( "Lower 95% Mean Cu_yield_pct",
+			Numeric,
+			"Continuous",
+			Format( "Best", 12 ),
+			Set Property( "Notes", "Fit Least Squares Mean Confidence Interval" ),
+			Set Values(
+				[78.0226935568974, 69.4915528568974, 72.5990646268974,
+				74.9151817868974, 63.6004660302307, 71.0961791302307,
+				61.3459207418974, 86.1683256718974, 69.4434382926154,
+				69.4434382926154, 69.4434382926154, 69.4434382926154]
+			)
+		),
+		New Column( "Upper 95% Mean Cu_yield_pct",
+			Numeric,
+			"Continuous",
+			Format( "Best", 12 ),
+			Set Property( "Notes", "Fit Least Squares" ),
+			Set Values(
+				[86.4031564064359, 77.8720157064359, 80.9795274764359,
+				83.2956446364359, 71.9809288797693, 79.4766419797693,
+				69.7263835914359, 94.5487885214359, 73.6336697173846,
+				73.6336697173846, 73.6336697173846, 73.6336697173846]
+			)
+		),
+		New Column( "Lower 95% Mean Cu_yield_pct 2",
+			Numeric,
+			"Continuous",
+			Format( "Best", 12 ),
+			Set Property( "Notes", "Mean Confidence Limit Formula" ),
+			Formula(
+				78.0180426743334 + 0.680820978833334 * :LS_ratio + -1.501057467 *
+				:Time_hr + -0.0585321433333335 * :Temp + -0.355594727733334 *
+				:H2O2_pct + 0.00606750355187377 * (:Temp - 57.5) * (:Temp - 57.5)
+				-As Constant( t Quantile( 1 - 0.05 / 2, 6 ) ) *
+				Sqrt(
+					Vec Quadratic(
+						[20.1915581854044 -0.0333333333333333 -1.05384615384616
+						-0.11715976331361 -0.299692307692308 -0.000157790927021696,
+						-0.0333333333333333 0.00166666666666667 0 0 0 0,
+						-1.05384615384616 0 0.0600000000000001 0.00615384615384616
+						0.016 0,
+						-0.11715976331361 0 0.00615384615384616 0.000788954635108482
+						0.00164102564102564 0,
+						-0.299692307692308 0 0.016 0.00164102564102564
+						0.00533333333333334 0,
+						-0.000157790927021696 0 0 0 0 0.000000298775719804395],
+						Matrix(
+							{{1, :LS_ratio, :Time_hr, :Temp, :H2O2_pct,
+							H Direct Product( :Temp - 57.5, :Temp - 57.5 )}}
+						)
+					) * 4.39876366870371
+				)
+			),
+			Set Property(
+				"Confidence Limit",
+				{Response( :Cu_yield_pct ), ID( 289022650 ), Direction( "Lower" ),
+				Type( "Mean" ), Alpha( 0.05 )}
+			),
+			Hide
+		),
+		New Column( "Upper 95% Mean Cu_yield_pct 2",
+			Numeric,
+			"Continuous",
+			Format( "Best", 12 ),
+			Set Property( "Notes", "Mean Confidence Limit Formula" ),
+			Formula(
+				78.0180426743334 + 0.680820978833334 * :LS_ratio + -1.501057467 *
+				:Time_hr + -0.0585321433333335 * :Temp + -0.355594727733334 *
+				:H2O2_pct + 0.00606750355187377 * (:Temp - 57.5) * (:Temp - 57.5)
+				+As Constant( t Quantile( 1 - 0.05 / 2, 6 ) ) *
+				Sqrt(
+					Vec Quadratic(
+						[20.1915581854044 -0.0333333333333333 -1.05384615384616
+						-0.11715976331361 -0.299692307692308 -0.000157790927021696,
+						-0.0333333333333333 0.00166666666666667 0 0 0 0,
+						-1.05384615384616 0 0.0600000000000001 0.00615384615384616
+						0.016 0,
+						-0.11715976331361 0 0.00615384615384616 0.000788954635108482
+						0.00164102564102564 0,
+						-0.299692307692308 0 0.016 0.00164102564102564
+						0.00533333333333334 0,
+						-0.000157790927021696 0 0 0 0 0.000000298775719804395],
+						Matrix(
+							{{1, :LS_ratio, :Time_hr, :Temp, :H2O2_pct,
+							H Direct Product( :Temp - 57.5, :Temp - 57.5 )}}
+						)
+					) * 4.39876366870371
+				)
+			),
+			Set Property(
+				"Confidence Limit",
+				{Response( :Cu_yield_pct ), ID( 289022650 ), Direction( "Upper" ),
+				Type( "Mean" ), Alpha( 0.05 )}
+			),
+			Hide
+		),
+		New Column( "Lower 95% Indiv Cu_yield_pct",
+			Numeric,
+			"Continuous",
+			Format( "Best", 12 ),
+			Set Property( "Notes", "Indiv Confidence Limit Formula" ),
+			Formula(
+				78.0180426743334 + 0.680820978833334 * :LS_ratio + -1.501057467 *
+				:Time_hr + -0.0585321433333335 * :Temp + -0.355594727733334 *
+				:H2O2_pct + 0.00606750355187377 * (:Temp - 57.5) * (:Temp - 57.5)
+				-As Constant( t Quantile( 1 - 0.05 / 2, 6 ) ) *
+				Sqrt(
+					Vec Quadratic(
+						[20.1915581854044 -0.0333333333333333 -1.05384615384616
+						-0.11715976331361 -0.299692307692308 -0.000157790927021696,
+						-0.0333333333333333 0.00166666666666667 0 0 0 0,
+						-1.05384615384616 0 0.0600000000000001 0.00615384615384616
+						0.016 0,
+						-0.11715976331361 0 0.00615384615384616 0.000788954635108482
+						0.00164102564102564 0,
+						-0.299692307692308 0 0.016 0.00164102564102564
+						0.00533333333333334 0,
+						-0.000157790927021696 0 0 0 0 0.000000298775719804395],
+						Matrix(
+							{{1, :LS_ratio, :Time_hr, :Temp, :H2O2_pct,
+							H Direct Product( :Temp - 57.5, :Temp - 57.5 )}}
+						)
+					) * 4.39876366870371 + 4.39876366870371
+				)
+			),
+			Set Property(
+				"Confidence Limit",
+				{Response( :Cu_yield_pct ), ID( 289022650 ), Direction( "Lower" ),
+				Type( "Indiv" ), Alpha( 0.05 )}
+			),
+			Hide
+		),
+		New Column( "Upper 95% Indiv Cu_yield_pct",
+			Numeric,
+			"Continuous",
+			Format( "Best", 12 ),
+			Set Property( "Notes", "Indiv Confidence Limit Formula" ),
+			Formula(
+				78.0180426743334 + 0.680820978833334 * :LS_ratio + -1.501057467 *
+				:Time_hr + -0.0585321433333335 * :Temp + -0.355594727733334 *
+				:H2O2_pct + 0.00606750355187377 * (:Temp - 57.5) * (:Temp - 57.5)
+				+As Constant( t Quantile( 1 - 0.05 / 2, 6 ) ) *
+				Sqrt(
+					Vec Quadratic(
+						[20.1915581854044 -0.0333333333333333 -1.05384615384616
+						-0.11715976331361 -0.299692307692308 -0.000157790927021696,
+						-0.0333333333333333 0.00166666666666667 0 0 0 0,
+						-1.05384615384616 0 0.0600000000000001 0.00615384615384616
+						0.016 0,
+						-0.11715976331361 0 0.00615384615384616 0.000788954635108482
+						0.00164102564102564 0,
+						-0.299692307692308 0 0.016 0.00164102564102564
+						0.00533333333333334 0,
+						-0.000157790927021696 0 0 0 0 0.000000298775719804395],
+						Matrix(
+							{{1, :LS_ratio, :Time_hr, :Temp, :H2O2_pct,
+							H Direct Product( :Temp - 57.5, :Temp - 57.5 )}}
+						)
+					) * 4.39876366870371 + 4.39876366870371
+				)
+			),
+			Set Property(
+				"Confidence Limit",
+				{Response( :Cu_yield_pct ), ID( 289022650 ), Direction( "Upper" ),
+				Type( "Indiv" ), Alpha( 0.05 )}
+			),
+			Hide
+		)
+	)) << Run Formulas;
+	table1 << Fit Model(
+		Y( :Cu_yield_pct ),
+		Effects( :LS_ratio, :Time_hr, :Temp, :H2O2_pct, :Temp * :Temp ),
+		Personality( "Standard Least Squares" ),
+		Emphasis( "Effect Screening" ),
+		Run(
+			:Cu_yield_pct << {Summary of Fit( 0 ), Analysis of Variance( 0 ),
+			Parameter Estimates( 1 ), Effect Details( 0 ), Sorted Estimates( 0 ),
+			Plot Actual by Predicted( 1 ), Plot Regression( 0 ),
+			Plot Residual by Predicted( 1 ), Plot Studentized Residuals( 1 ),
+			Plot Effect Leverage( 0 ), Plot Residual by Normal Quantiles( 0 ),
+			Box Cox Y Transformation( 0 ), Profiler(
+				1,
+				Confidence Intervals( 1 ),
+				Term Value(
+					:LS_ratio( 20, Lock( 0 ), Show( 1 ) ),
+					:Time_hr( 7, Lock( 0 ), Show( 1 ) ),
+					:Temp( 57.5, Lock( 0 ), Show( 1 ) ),
+					:H2O2_pct( 17.5, Lock( 0 ), Show( 1 ) )
+				)
+			), Contour Profiler(
+				1,
+				Term Value(
+					:LS_ratio( 19.85, Lock( 0 ), Show( 1 ) ),
+					:Time_hr( 7, Lock( 0 ), Show( 1 ) ),
+					:Temp( 59.9375, Lock( 0 ), Show( 1 ) ),
+					:H2O2_pct( 17.5, Lock( 0 ), Show( 1 ) )
+				),
+				Contour Value(
+					:Cu_yield_pct(
+						77.825403705,
+						Min( 64.4213050428 ),
+						Max( 91.2295023672 )
+					)
+				),
+				Grid Density( "40 x 40" ),
+				Horizontal Factor( :LS_ratio ),
+				Vertical Factor( :Temp )
+			)}
+		)
+	);
+)
