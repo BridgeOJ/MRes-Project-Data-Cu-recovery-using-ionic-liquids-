@@ -1,0 +1,167 @@
+1. UBH Pre Sep Powder Results
+Compound	Conc	Unit
+Na	2.722	%
+Mg	0.658	%
+Al	0.745	%
+Si	26.227	%
+P	0.150	%
+S	274.9	ppm
+Cl	810.8	ppm
+Ca	6.445	%
+Ti	1.576	%
+V	178.2	ppm
+Cr	247.9	ppm
+Mn	49.6	ppm
+Fe	0.534	%
+Cu	2.822	%
+Zn	402.6	ppm
+Sr	47.3	ppm
+Zr	89.3	ppm
+Ag	0.208	%
+Sn	0.456	%
+Sb	880.7	ppm
+Pb	0.587	%
+
+
+2. UBH Post Sep Powder Results
+Compound	Conc	Unit
+Na	2.806	%
+Mg	0.689	%
+Al	0.762	%
+Si	28.683	%
+P	0.146	%
+S	391.8	ppm
+Cl	909.0	ppm
+Ca	7.525	%
+Ti	0.324	%
+Cr	156.9	ppm
+Mn	46.9	ppm
+Fe	0.382	%
+Cu	0.432	%
+Zn	115.7	ppm
+Sr	48.9	ppm
+Zr	87.3	ppm
+Ag	0.255	%
+Sn	0.628	%
+Sb	0.154	%
+Pb	0.523	%
+
+
+3. Fraunhofer Sample A
+Compound	Conc	Unit
+Na	2.735	%
+Mg	0.604	%
+Al	3.811	%
+Si	34.342	%
+P	0.145	%
+S	0.131	%
+Cl	0.110	%
+Ca	6.064	%
+Ti	0.345	%
+Cr	196.2	ppm
+Mn	78.0	ppm
+Fe	0.515	%
+Ni	236.2	ppm
+Cu	0.556	%
+Zn	402.4	ppm
+Sr	161.5	ppm
+Zr	101.7	ppm
+Ag	1.629	%
+Sn	0.458	%
+Sb	883.3	ppm
+Pb	0.317	%
+Bi	763.4	ppm
+
+
+4. Fraunhofer Sample B
+Compound	Conc	Unit
+Na	0.844	%
+Mg	0.157	%
+Al	3.407	%
+Si	46.098	%
+P	0.140	%
+Cl	967.5	ppm
+Ca	1.402	%
+Ti	783.1	ppm
+Cr	32.0	ppm
+Fe	0.114	%
+Ni	108.7	ppm
+Cu	1.772	%
+Zn	0.178	%
+Ga	7.3	ppm
+Sr	10.7	ppm
+Ag	2.878	%
+Sn	0.849	%
+Sb	104.5	ppm
+Te	100.5	ppm
+Yb	116.2	ppm
+Pb	0.419	%
+Bi	0.300	%
+
+
+5. UBH Glass Powder
+Compound	Conc	Unit
+Na	3.295	%
+Mg	0.858	%
+Al	0.369	%
+Si	20.613	%
+S	521.4	ppm
+Cl	966.2	ppm
+K	241.7	ppm
+Ca	8.193	%
+Ti	278.9	ppm
+V	1.4	ppm
+Cr	34.8	ppm
+Mn	134.2	ppm
+Fe	0.334	%
+Cu	145.8	ppm
+Zn	68.5	ppm
+As	27.1	ppm
+Sr	58.4	ppm
+Zr	118.8	ppm
+Ag	0.149	%
+Sn	501.8	ppm
+Sb	0.237	%
+Te	99.3	ppm
+Pb	227.7	ppm
+
+
+6. UBH Ground Glass
+Compound	Conc	Unit
+Na	2.619	%
+Mg	0.744	%
+Al	0.388	%
+Si	17.078	%
+S	354.0	ppm
+Cl	936.6	ppm
+K	260.2	ppm
+Ca	8.201	%
+Ti	453.2	ppm
+Cr	10.9	ppm
+Mn	55.9	ppm
+Fe	0.134	%
+Zn	72.9	ppm
+As	24.5	ppm
+Sr	65.4	ppm
+Zr	141.5	ppm
+Ag	0.149	%
+Sn	121.6	ppm
+Sb	0.245	%
+Te	118.8	ppm
+Pb	40.0	ppm
+
+
+7. UBH Semi-Ground Cu
+Compound	Conc	Unit
+Mg	0.185	%
+Al	0.268	%
+Si	0.337	%
+P	0.146	%
+Cl	839.1	ppm
+Ca	761.2	ppm
+Cu	45.231	%
+Ag	0.107	%
+Sn	0.410	%
+Au	396.8	ppm
+
+
