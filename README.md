@@ -5,3 +5,7 @@ Please use this link to access my logbook: https://imperiallondon-my.sharepoint.
 
 1. [CV](CV) For all electrochemical data such as cyclic voltammetry, linear scan voltammetry, chronoamperometry files.
 2. [ICP](ICP) All ICP-MS results, including element concentration from all leaches and microwave digestion.
+3. [JMP](JMP) Analysis from the JMP software can be found here
+4. [SEM](SEM)
+5. [UV-VIS](UV-VIS)
+6. [XRF](XRF)
